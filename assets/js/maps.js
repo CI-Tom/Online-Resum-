@@ -1,5 +1,5 @@
 function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
+    const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 3,
         center: {
             lat: 46.619261,
@@ -7,9 +7,7 @@ function initMap() {
         }
     });
 
-    var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-    var locations = [{
+    const locations = [{
             lat: 40.785091,
             lng: -73.968285
         },
@@ -19,18 +17,19 @@ function initMap() {
         },
         {
             lat: 40.754932,
-            lng: -73.984016
-        }
+            lng: -73.948016
+        },
     ];
 
-    var markers = locations.map(function (location, i) {
+    const markers = locations.map(function (location, i) {
+        const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         return new google.maps.Marker({
             position: location,
-            label: labels[i % labels.length]
+            label: labels[i % labels.length],
         });
     });
-
-    var markerCluster = new MarkerClusterer(map, markers, {
-        imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+    const markerCluster = new markerClusterer.MarkerClusterer({
+        map,
+        markers
     });
 }
